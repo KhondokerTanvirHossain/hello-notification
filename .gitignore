@@ -1,1 +1,58 @@
 hello-reactive-spring/src/main/resources/firebase/firebase-adminsdk.json
+hello-notification/hello_notification_flutter/android/app/google-services.json
+
+# Flutter
+.dart_tool/
+.packages
+.pub-cache/
+build/
+flutter_*.png
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+
+# Dart
+*.lock
+*.log
+
+# iOS/macOS (if added later)
+ios/
+macos/
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+
+# Firebase secrets (IMPORTANT)
+**/firebase-adminsdk.json
+**/google-services.json
+**/service-account.json
+**/*.keystore
+**/*.jks
+
+# Spring Boot (Java)
+target/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
