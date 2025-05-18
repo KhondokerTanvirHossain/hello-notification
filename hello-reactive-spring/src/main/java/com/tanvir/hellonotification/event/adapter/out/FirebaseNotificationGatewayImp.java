@@ -14,7 +14,7 @@ public class FirebaseNotificationGatewayImp implements FirebaseNotificationGatew
     @Override
     public Mono<Void> send(String title, String messageBody, String fcmToken) {
         Message message = Message.builder()
-            .setToken(fcmToken)
+            .setTopic("all_users")
             .setNotification(
                 Notification.builder()
                     .setTitle(title)

@@ -56,6 +56,13 @@ void main() async {
   final token = await messaging.getToken();
   print('📱 FCM Token: $token');
 
+  // Subscribe to all_users topic
+  try {
+    await messaging.subscribeToTopic('all_users');
+    print('Subscribed to all_users topic');
+  } catch (e) {
+    print('Error subscribing to topic: $e');
+  }
   runApp(MyApp());
 }
 

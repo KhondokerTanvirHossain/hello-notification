@@ -243,3 +243,47 @@ curl -X POST http://localhost:8080/api/events/trigger
 ```
 
 If the Flutter app is running on a physical or emulator device, you should see the notification.
+
+# 📣 Phase 2: Broadcasting with FCM Topics
+
+This phase upgrades your notification system to use **FCM Topics** for broadcasting messages to multiple devices at once, without managing individual tokens.
+
+---
+
+## 🆕 What's New in This Phase
+
+- Devices subscribe to a shared **topic** (e.g., `all_users`)
+- Backend sends notifications to the topic, reaching all subscribed devices
+- No need to collect or manage device tokens for broadcast messages
+
+---
+
+## 🔄 Changes in Flutter App
+
+1. **Subscribe to a Topic**
+
+   In `lib/main.dart`, after initializing Firebase, subscribe to a topic:
+
+   ```dart
+   // ...existing code...
+   await FirebaseMessaging.instance.subscribeToTopic('all_users');
+   print('Subscribed to all_users topic');
+   // ...existing code...
+   ```
+
+   > All devices running the app will now receive notifications sent to the `all_users` topic.
+
+## 📝 Example: Sending a Broadcast Notification
+
+Trigger a notification as before:
+
+```bash
+curl -X POST http://localhost:8080/api/events/trigger
+```
+
+All devices subscribed to `all_users` will receive the notification.
+
+## 🛠️ Optional: Custom Topics
+
+- You can use any topic name (e.g., `doctors`, `patients`, `alerts`)
+- Devices can subscribe to multiple topics as needed

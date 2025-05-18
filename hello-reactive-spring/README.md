@@ -100,3 +100,53 @@ Expected: Just logs a message; no notification is sent.
         * Make sure you're using a valid FCM registration token
         * Ensure that Firebase Cloud Messaging API (V1) is enabled
         * Check if the Flutter app is correctly registered and initialized with Firebase
+
+# 📣 Phase 2: Broadcasting with FCM Topics
+
+This phase upgrades your notification system to use **FCM Topics** for broadcasting messages to multiple devices at once, without managing individual tokens.
+
+---
+
+## 🆕 What's New in This Phase
+
+- Devices subscribe to a shared **topic** (e.g., `all_users`)
+- Backend sends notifications to the topic, reaching all subscribed devices
+- No need to collect or manage device tokens for broadcast messages
+
+## 🔄 Changes in Spring Boot Backend
+
+1. **Send to Topic Instead of Token**
+
+   In your notification sending service, update the message builder:
+
+   ```java
+   // ...existing code...
+   Message message = Message.builder()
+       .setTopic("all_users") // Send to topic
+       .setNotification(
+           Notification.builder()
+               .setTitle(title)
+               .setBody(messageBody)
+               .build()
+       )
+       .build();
+   // ...existing code...
+   ```
+
+   > You no longer need to pass or manage FCM tokens for broadcast notifications.
+
+## 📝 Example: Sending a Broadcast Notification
+
+Trigger a notification as before:
+
+```bash
+curl -X POST http://localhost:8080/api/events/trigger
+```
+
+All devices subscribed to `all_users` will receive the notification.
+
+
+## 🛠️ Optional: Custom Topics
+
+- You can use any topic name (e.g., `doctors`, `patients`, `alerts`)
+- Devices can subscribe to multiple topics as needed
